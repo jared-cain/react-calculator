@@ -1,0 +1,48 @@
+#calculator > h2 {
+    text-align: center;
+}
+
+.number, .operand {
+    display: inline-block;
+    margin: 0.5em;
+    background-color: #fff;
+    width: 30px;
+    text-align: center;
+    font-size: 22px;
+    border: 1px solid;
+    border-radius: 25%;
+    cursor: pointer;
+}
+
+.number:hover, .operand:hover {
+    border-color: lightblue;
+}
+
+/*#total-frame .well span {
+    display: inline-block;
+    margin: 0.5em;
+    background-color: #bbb;
+    width: 30px;
+    text-align: center;
+    font-size: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+}*/
+
+#numbers-frame {
+    width: 30%;
+    float: left;
+    margin-left: 25%;
+}
+
+#total-frame {
+    width: auto;
+    float:left;
+    margin-left: 10px;
+}
+
+#equation-frame {
+    width: 50%;
+    text-align: center;
+    margin: auto;
+}

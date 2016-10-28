@@ -1,0 +1,30 @@
+{
+  "name": "@jcain7/react-calculator",
+  "version": "0.1.0",
+  "description": "A simple react calculator",
+  "main": "server.js",
+  "scripts": {
+    "start": "webpack && node server.js"
+  },
+  "keywords": [
+    "react",
+    "jsx"
+  ],
+  "author": "jared cain",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "react": "^15.3.2",
+    "react-bootstrap": "^0.30.5",
+    "react-dom": "^15.3.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.2"
+  }
+}

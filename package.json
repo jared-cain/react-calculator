@@ -4,7 +4,7 @@
   "description": "A simple react calculator",
   "main": "server.js",
   "scripts": {
-    "start": "webpack && node server.js"
+    "start": "node server.js"
   },
   "keywords": [
     "react",

@@ -139,6 +139,8 @@ var Calculator = React.createClass({
                 <NumbersFrame equation={this.state.equation} selectNumber={this.selectNumber} deleteLast={this.deleteLast} />
                 <TotalFrame total={this.state.total} />
 
+                <h3>Test for consistency</h3>
+
             </div>
         )
     }

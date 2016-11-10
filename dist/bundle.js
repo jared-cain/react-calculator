@@ -21973,7 +21973,13 @@
 	            React.createElement('hr', null),
 	            React.createElement(EquationFrame, { equation: this.state.equation }),
 	            React.createElement(NumbersFrame, { equation: this.state.equation, selectNumber: this.selectNumber, deleteLast: this.deleteLast }),
-	            React.createElement(TotalFrame, { total: this.state.total })
+	            React.createElement(TotalFrame, { total: this.state.total }),
+	            React.createElement(
+	                'h3',
+	                null,
+	                'Test for consistency one more time'
+	            ),
+	            React.createElement('hr', null)
 	        );
 	    }
 	});

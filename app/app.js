@@ -41,15 +41,19 @@ var NumbersFrame = React.createClass({
         var numbers = [],
             operands = [],
             deleteButton,
+            clearButton,
             className,
+            clearEquation = this.props.clearEquation,
             deleteLast = this.props.deleteLast,
             selectNumber = this.props.selectNumber;
+
         for (var i = 0; i <= 9; i++) {
             className = 'number number-' + i;
             numbers.push(
                 <div key={i} className={className} onClick={selectNumber.bind(null, i)}>{i}</div>
             )
         };
+
         ["+", "-", "*", "/"].forEach(function(el,ind,arr) {
             operands.push(
                 <div key={ind} className="operand" onClick={selectNumber.bind(null, el)}>{el}</div>
@@ -60,12 +64,17 @@ var NumbersFrame = React.createClass({
         } else {
             deleteButton = <button className="btn btn-primary" onClick={deleteLast}>Del</button>
         };
+
+        clearButton = <button id="clear-button" className="btn btn-warning" onClick={clearEquation}>Clr</button>
+
+
         return (
             <div id="numbers-frame">
                 <div className="well">
                     {numbers}
                     {operands}
                     {deleteButton}
+                    {clearButton}
                 </div>
             </div>
         );
@@ -83,7 +92,9 @@ var Calculator = React.createClass({
     deleteLast: function(){
         var equation = this.state.equation.slice(0, -1);
         if (typeof equation.slice(-1) !== "number"){
-            this.setState({ equation: equation });
+            equation = equation.slice(0, -1);
+            var newTotal = eval(equation);
+            this.setState({ equation: equation, total: newTotal });
         } else {
             this.setState({ equation: equation });
             var newTotal = eval(equation);
@@ -129,6 +140,9 @@ var Calculator = React.createClass({
             }
         }
     },
+    clearEquation: function(){
+        this.setState({ total: 0, equation: "" });
+    },
     render: function() {
         return (
             <div id="calculator">
@@ -136,11 +150,9 @@ var Calculator = React.createClass({
                 <hr />
 
                 <EquationFrame equation={this.state.equation} />
-                <NumbersFrame equation={this.state.equation} selectNumber={this.selectNumber} deleteLast={this.deleteLast} />
+                <NumbersFrame equation={this.state.equation} total={this.state.total} selectNumber={this.selectNumber} deleteLast={this.deleteLast} clearEquation={this.clearEquation} />
                 <TotalFrame total={this.state.total} />
 
-                <h3>Test for consistency one more time</h3>
-                <hr />
 
             </div>
         )

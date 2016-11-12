@@ -21858,9 +21858,12 @@
 	        var numbers = [],
 	            operands = [],
 	            deleteButton,
+	            clearButton,
 	            className,
+	            clearEquation = this.props.clearEquation,
 	            deleteLast = this.props.deleteLast,
 	            selectNumber = this.props.selectNumber;
+
 	        for (var i = 0; i <= 9; i++) {
 	            className = 'number number-' + i;
 	            numbers.push(React.createElement(
@@ -21869,6 +21872,7 @@
 	                i
 	            ));
 	        };
+
 	        ["+", "-", "*", "/"].forEach(function (el, ind, arr) {
 	            operands.push(React.createElement(
 	                'div',
@@ -21889,6 +21893,13 @@
 	                'Del'
 	            );
 	        };
+
+	        clearButton = React.createElement(
+	            'button',
+	            { id: 'clear-button', className: 'btn btn-warning', onClick: clearEquation },
+	            'Clr'
+	        );
+
 	        return React.createElement(
 	            'div',
 	            { id: 'numbers-frame' },
@@ -21897,7 +21908,8 @@
 	                { className: 'well' },
 	                numbers,
 	                operands,
-	                deleteButton
+	                deleteButton,
+	                clearButton
 	            )
 	        );
 	    }
@@ -21916,7 +21928,9 @@
 	    deleteLast: function deleteLast() {
 	        var equation = this.state.equation.slice(0, -1);
 	        if (typeof equation.slice(-1) !== "number") {
-	            this.setState({ equation: equation });
+	            equation = equation.slice(0, -1);
+	            var newTotal = eval(equation);
+	            this.setState({ equation: equation, total: newTotal });
 	        } else {
 	            this.setState({ equation: equation });
 	            var newTotal = eval(equation);
@@ -21961,6 +21975,9 @@
 	            }
 	        }
 	    },
+	    clearEquation: function clearEquation() {
+	        this.setState({ total: 0, equation: "" });
+	    },
 	    render: function render() {
 	        return React.createElement(
 	            'div',
@@ -21972,14 +21989,8 @@
 	            ),
 	            React.createElement('hr', null),
 	            React.createElement(EquationFrame, { equation: this.state.equation }),
-	            React.createElement(NumbersFrame, { equation: this.state.equation, selectNumber: this.selectNumber, deleteLast: this.deleteLast }),
-	            React.createElement(TotalFrame, { total: this.state.total }),
-	            React.createElement(
-	                'h3',
-	                null,
-	                'Test for consistency one more time'
-	            ),
-	            React.createElement('hr', null)
+	            React.createElement(NumbersFrame, { equation: this.state.equation, total: this.state.total, selectNumber: this.selectNumber, deleteLast: this.deleteLast, clearEquation: this.clearEquation }),
+	            React.createElement(TotalFrame, { total: this.state.total })
 	        );
 	    }
 	});
@@ -22021,7 +22032,7 @@
 
 
 	// module
-	exports.push([module.id, "#calculator > h2 {\r\n    text-align: center;\r\n}\r\n\r\n.number, .operand {\r\n    display: inline-block;\r\n    margin: 0.5em;\r\n    background-color: #fff;\r\n    width: 30px;\r\n    text-align: center;\r\n    font-size: 22px;\r\n    border: 1px solid;\r\n    border-radius: 25%;\r\n    cursor: pointer;\r\n}\r\n\r\n.number:hover, .operand:hover {\r\n    border-color: lightblue;\r\n}\r\n\r\n/*#total-frame .well span {\r\n    display: inline-block;\r\n    margin: 0.5em;\r\n    background-color: #bbb;\r\n    width: 30px;\r\n    text-align: center;\r\n    font-size: 22px;\r\n    border-radius: 50%;\r\n    cursor: pointer;\r\n}*/\r\n\r\n#numbers-frame {\r\n    width: 30%;\r\n    float: left;\r\n    margin-left: 25%;\r\n}\r\n\r\n#total-frame {\r\n    width: auto;\r\n    float:left;\r\n    margin-left: 10px;\r\n}\r\n\r\n#equation-frame {\r\n    width: 50%;\r\n    text-align: center;\r\n    margin: auto;\r\n}\r\n", ""]);
+	exports.push([module.id, "#calculator > h2 {\r\n    text-align: center;\r\n}\r\n\r\n.number, .operand {\r\n    display: inline-block;\r\n    margin: 0.5em;\r\n    background-color: #fff;\r\n    width: 30px;\r\n    text-align: center;\r\n    font-size: 22px;\r\n    border: 1px solid;\r\n    border-radius: 25%;\r\n    cursor: pointer;\r\n}\r\n\r\n.number:hover, .operand:hover {\r\n    border-color: lightblue;\r\n}\r\n\r\n#clear-button {\r\n    margin: 0.5em;\r\n}\r\n\r\n/*#total-frame .well span {\r\n    display: inline-block;\r\n    margin: 0.5em;\r\n    background-color: #bbb;\r\n    width: 30px;\r\n    text-align: center;\r\n    font-size: 22px;\r\n    border-radius: 50%;\r\n    cursor: pointer;\r\n}*/\r\n\r\n#numbers-frame {\r\n    width: 30%;\r\n    float: left;\r\n    margin-left: 25%;\r\n}\r\n\r\n#total-frame {\r\n    width: auto;\r\n    float:left;\r\n    margin-left: 10px;\r\n}\r\n\r\n#equation-frame {\r\n    width: 50%;\r\n    text-align: center;\r\n    margin: auto;\r\n}\r\n", ""]);
 
 	// exports
 

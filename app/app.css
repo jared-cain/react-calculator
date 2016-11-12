@@ -18,6 +18,10 @@
     border-color: lightblue;
 }
 
+#clear-button {
+    margin: 0.5em;
+}
+
 /*#total-frame .well span {
     display: inline-block;
     margin: 0.5em;

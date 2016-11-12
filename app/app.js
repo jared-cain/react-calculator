@@ -59,6 +59,7 @@ var NumbersFrame = React.createClass({
                 <div key={ind} className="operand" onClick={selectNumber.bind(null, el)}>{el}</div>
             )
         });
+
         if (this.props.equation === ""){
             deleteButton = <button className="btn btn-danger" disabled="true">Del</button>
         } else {
